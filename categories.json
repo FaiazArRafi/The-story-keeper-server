@@ -1,0 +1,104 @@
+[
+    {
+        "_id": "00001",
+        "c_id": 1,
+        "category_name": "Fantasy",
+        "logo": "",
+        "products": [
+            {
+                "p_id": "0182e0e58a1",
+                "name": "Harry Potter",
+                "image": "",
+                "resale_price": 200,
+                "original_price": 600,
+                "years_of_use": 4,
+                "condition": "Good",
+                "posted": "",
+                "sellers_name": "Abir",
+                "location": "Dhaka",
+                "mobile_number": 880123451
+            },
+            {
+                "p_id": "0182e0e58a2",
+                "name": "Lord of the Rings",
+                "image": "",
+                "resale_price": "",
+                "original_price": "",
+                "years_of_use": "",
+                "condition": "",
+                "posted": "",
+                "sellers_name": "",
+                "location": "",
+                "mobile_number": 880123452
+            }
+        ]
+    },
+    {
+        "_id": "00002",
+        "c_id": 2,
+        "category_name": "Thriller",
+        "logo": "",
+        "products": [
+            {
+                "p_id": "0182e0e58a3",
+                "name": "Da Vinci Code",
+                "image": "",
+                "resale_price": "",
+                "original_price": "",
+                "years_of_use": "",
+                "condition": "",
+                "posted": "",
+                "sellers_name": "",
+                "location": "",
+                "mobile_number": 880123453
+            },
+            {
+                "p_id": "0182e0e58a4",
+                "name": "From Russia With Love",
+                "image": "",
+                "resale_price": "",
+                "original_price": "",
+                "years_of_use": "",
+                "condition": "",
+                "posted": "",
+                "sellers_name": "",
+                "location": "",
+                "mobile_number": 880123454
+            }
+        ]
+    },
+    {
+        "_id": "00003",
+        "c_id": 3,
+        "category_name": "Science-Fiction",
+        "logo": "",
+        "products": [
+            {
+                "p_id": "0182e0e58a5",
+                "name": "Dune",
+                "image": "",
+                "resale_price": "",
+                "original_price": "",
+                "years_of_use": "",
+                "condition": "",
+                "posted": "",
+                "sellers_name": "",
+                "location": "",
+                "mobile_number": 880123455
+            },
+            {
+                "p_id": "0182e0e58a6",
+                "name": "E.T.",
+                "image": "",
+                "resale_price": "",
+                "original_price": "",
+                "years_of_use": "",
+                "condition": "",
+                "posted": "",
+                "sellers_name": "",
+                "location": "",
+                "mobile_number": 880123456
+            }
+        ]
+    }
+]
