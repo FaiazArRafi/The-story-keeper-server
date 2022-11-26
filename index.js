@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
@@ -84,12 +84,41 @@ async function run() {
             res.status(403).send({ accessToken: '' })
         });
 
+        app.get('/users/allsellers', async (req, res) => {
+            const query = { userType: 'Seller' };
+            console.log(query)
+            const users = await usersCollection.find(query).toArray();
+            res.send(users);
+        });
+
+        app.get('/users/allbuyers', async (req, res) => {
+            const query = { userType: 'Buyer' };
+            console.log(query)
+            const users = await usersCollection.find(query).toArray();
+            res.send(users);
+        });
+
+
         app.post('/users', async (req, res) => {
             const user = req.body;
             console.log(user);
             const result = await usersCollection.insertOne(user);
             res.send(result);
         });
+
+        app.delete('/users/allsellers:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await usersCollection.deleteOne(query);
+            res.send(result);
+        })
+
+        app.delete('/users/allbuyers:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await usersCollection.deleteOne(query);
+            res.send(result);
+        })
 
 
     }
