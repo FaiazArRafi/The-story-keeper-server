@@ -7,7 +7,7 @@
         "products": [
             {
                 "p_id": "0182e0e58a1",
-                "name": "Harry Potter",
+                "product_name": "Harry Potter",
                 "image": "",
                 "resale_price": 200,
                 "original_price": 600,
@@ -20,7 +20,7 @@
             },
             {
                 "p_id": "0182e0e58a2",
-                "name": "Lord of the Rings",
+                "product_name": "Lord of the Rings",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
@@ -41,7 +41,7 @@
         "products": [
             {
                 "p_id": "0182e0e58a3",
-                "name": "Da Vinci Code",
+                "product_name": "Da Vinci Code",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
@@ -54,7 +54,7 @@
             },
             {
                 "p_id": "0182e0e58a4",
-                "name": "From Russia With Love",
+                "product_name": "From Russia With Love",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
@@ -75,7 +75,7 @@
         "products": [
             {
                 "p_id": "0182e0e58a5",
-                "name": "Dune",
+                "product_name": "Dune",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
@@ -88,7 +88,7 @@
             },
             {
                 "p_id": "0182e0e58a6",
-                "name": "E.T.",
+                "product_name": "E.T.",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
