@@ -76,7 +76,6 @@ async function run() {
             const email = req.query.email;
             const query = { email: email };
             const user = await usersCollection.findOne(query);
-            console.log(user)
             if (user) {
                 const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: '1d' })
                 return res.send({ accessToken: token });
@@ -91,6 +90,13 @@ async function run() {
             res.send({ isAdmin: user?.userType === 'admin' });
         })
 
+        app.get('/users/seller/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email }
+            const user = await usersCollection.findOne(query);
+            res.send({ isSeller: user?.userType === 'Seller' });
+        })
+
         // app.get('/users', async (req, res) => {
         //     const query = { _id: ObjectId(id) };
         //     console.log(query)
@@ -100,14 +106,12 @@ async function run() {
 
         app.get('/users/allsellers', async (req, res) => {
             const query = { userType: 'Seller' };
-            console.log(query)
             const users = await usersCollection.find(query).toArray();
             res.send(users);
         });
 
         app.get('/users/allbuyers', async (req, res) => {
             const query = { userType: 'Buyer' };
-            console.log(query)
             const users = await usersCollection.find(query).toArray();
             res.send(users);
         });
@@ -115,7 +119,6 @@ async function run() {
 
         app.post('/users', async (req, res) => {
             const user = req.body;
-            console.log(user);
             const result = await usersCollection.insertOne(user);
             res.send(result);
         });
