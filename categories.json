@@ -1,102 +1,87 @@
 [
     {
-        "_id": "00001",
         "c_id": 1,
         "category_name": "Fantasy",
         "logo": "",
         "products": [
             {
-                "p_id": "0182e0e58a1",
                 "product_name": "Harry Potter",
                 "image": "",
                 "resale_price": 200,
                 "original_price": 600,
                 "years_of_use": 4,
                 "condition": "Good",
-                "posted": "",
-                "sellers_name": "Abir",
-                "location": "Dhaka",
+                "sellers_name": "Rowling",
+                "sellers_location": "Dhaka",
                 "mobile_number": 880123451
             },
             {
-                "p_id": "0182e0e58a2",
                 "product_name": "Lord of the Rings",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
                 "years_of_use": "",
                 "condition": "",
-                "posted": "",
-                "sellers_name": "",
-                "location": "",
+                "sellers_name": "Peter",
+                "sellers_location": "",
                 "mobile_number": 880123452
             }
         ]
     },
     {
-        "_id": "00002",
         "c_id": 2,
         "category_name": "Thriller",
         "logo": "",
         "products": [
             {
-                "p_id": "0182e0e58a3",
                 "product_name": "Da Vinci Code",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
                 "years_of_use": "",
                 "condition": "",
-                "posted": "",
-                "sellers_name": "",
-                "location": "",
+                "sellers_name": "Homer",
+                "sellers_location": "",
                 "mobile_number": 880123453
             },
             {
-                "p_id": "0182e0e58a4",
                 "product_name": "From Russia With Love",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
                 "years_of_use": "",
                 "condition": "",
-                "posted": "",
-                "sellers_name": "",
-                "location": "",
+                "sellers_name": "Milton",
+                "sellers_location": "",
                 "mobile_number": 880123454
             }
         ]
     },
     {
-        "_id": "00003",
         "c_id": 3,
         "category_name": "Science-Fiction",
         "logo": "",
         "products": [
             {
-                "p_id": "0182e0e58a5",
                 "product_name": "Dune",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
                 "years_of_use": "",
                 "condition": "",
-                "posted": "",
-                "sellers_name": "",
-                "location": "",
+                "sellers_name": "TinTin",
+                "sellers_location": "",
                 "mobile_number": 880123455
             },
             {
-                "p_id": "0182e0e58a6",
                 "product_name": "E.T.",
                 "image": "",
                 "resale_price": "",
                 "original_price": "",
                 "years_of_use": "",
                 "condition": "",
-                "posted": "",
-                "sellers_name": "",
-                "location": "",
+                "sellers_name": "Captain",
+                "sellers_location": "",
                 "mobile_number": 880123456
             }
         ]

@@ -12,13 +12,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const courses = require('./categories.json')
+// const courses = require('./categories.json')
 
 
 
-app.get('/category', (req, res) => {
-    res.send(courses)
-})
+// app.get('/category', (req, res) => {
+//     res.send(courses)
+// })
 
 
 
@@ -49,8 +49,29 @@ function verifyJWT(req, res, next) {
 
 async function run() {
     try {
+        const productsCollection = client.db('resaleBooks').collection('products');
         const resaleCollection = client.db('resaleBooks').collection('bookedItems');
         const usersCollection = client.db('resaleBooks').collection('users');
+
+
+        // products
+
+        app.get('/products', async (req, res) => {
+            const query = {};
+            const cursor = productsCollection.find(query);
+            const products = await cursor.toArray();
+            res.send(products);
+        })
+
+        app.get('/products/:id', async (req, res) => {
+            const id = req.params.id;
+            console.log(id)
+            const query = { _id: ObjectId(id) };
+            const product = await productsCollection.findOne(query);
+            res.send(product);
+        })
+
+        // booked items
 
         app.post('/booked', async (req, res) => {
             const booking = req.body;
@@ -83,6 +104,8 @@ async function run() {
             res.status(403).send({ accessToken: '' })
         });
 
+        // admin & seller hooks
+
         app.get('/users/admin/:email', async (req, res) => {
             const email = req.params.email;
             const query = { email }
@@ -104,6 +127,8 @@ async function run() {
         //     res.send(users);
         // });
 
+        // admin dashboard
+
         app.get('/users/allsellers', async (req, res) => {
             const query = { userType: 'Seller' };
             const users = await usersCollection.find(query).toArray();
@@ -114,13 +139,6 @@ async function run() {
             const query = { userType: 'Buyer' };
             const users = await usersCollection.find(query).toArray();
             res.send(users);
-        });
-
-
-        app.post('/users', async (req, res) => {
-            const user = req.body;
-            const result = await usersCollection.insertOne(user);
-            res.send(result);
         });
 
         app.delete('/users/allsellers:id', async (req, res) => {
@@ -137,6 +155,12 @@ async function run() {
             res.send(result);
         })
 
+        // all users data
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            const result = await usersCollection.insertOne(user);
+            res.send(result);
+        });
 
     }
 
@@ -148,11 +172,11 @@ async function run() {
 run().catch(err => console.error(err));
 
 
-app.get('/category/:id', (req, res) => {
-    const id = req.params.id;
-    const selectedCourse = courses.find(course => course._id === id);
-    res.send(selectedCourse);
-})
+// app.get('/category/:id', (req, res) => {
+//     const id = req.params.id;
+//     const selectedCourse = courses.find(course => course._id === id);
+//     res.send(selectedCourse);
+// })
 
 
 
