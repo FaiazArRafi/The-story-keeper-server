@@ -50,6 +50,7 @@ function verifyJWT(req, res, next) {
 async function run() {
     try {
         const productsCollection = client.db('resaleBooks').collection('products');
+        const myProductsCollection = client.db('resaleBooks').collection('myProducts');
         const resaleCollection = client.db('resaleBooks').collection('bookedItems');
         const usersCollection = client.db('resaleBooks').collection('users');
 
@@ -70,6 +71,28 @@ async function run() {
             const product = await productsCollection.findOne(query);
             res.send(product);
         })
+
+        app.post('/myproducts', async (req, res) => {
+            const booking = req.body;
+            console.log(booking)
+            const result = await myProductsCollection.insertOne(booking);
+            res.send(result);
+        });
+
+        app.get('/myproducts', verifyJWT, async (req, res) => {
+            const email = req.query.email;
+            const decodedEmail = req.decoded.email;
+            console.log(email)
+
+            if (email !== decodedEmail) {
+                return res.status(403).send({ message: 'forbidden access' });
+            }
+
+            const query = { sellers_email: email };
+            const bookings = await myProductsCollection.find(query).toArray();
+            res.send(bookings);
+        })
+
 
         // booked items
 
