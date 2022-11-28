@@ -12,15 +12,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// const courses = require('./categories.json')
-
-
-
-// app.get('/category', (req, res) => {
-//     res.send(courses)
-// })
-
-
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster-learning.kqxfudp.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -53,6 +44,36 @@ async function run() {
         const myProductsCollection = client.db('resaleBooks').collection('myProducts');
         const resaleCollection = client.db('resaleBooks').collection('bookedItems');
         const usersCollection = client.db('resaleBooks').collection('users');
+
+
+        //  jwt
+
+        app.get('/jwt', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email };
+            const user = await usersCollection.findOne(query);
+            if (user) {
+                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: '1d' })
+                return res.send({ accessToken: token });
+            }
+            res.status(403).send({ accessToken: '' })
+        });
+
+        // admin & seller hooks
+
+        app.get('/users/admin/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email }
+            const user = await usersCollection.findOne(query);
+            res.send({ isAdmin: user?.userType === 'admin' });
+        })
+
+        app.get('/users/seller/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email }
+            const user = await usersCollection.findOne(query);
+            res.send({ isSeller: user?.userType === 'Seller' });
+        })
 
 
         // products
@@ -122,41 +143,13 @@ async function run() {
             res.send(bookings);
         })
 
-        app.get('/jwt', async (req, res) => {
-            const email = req.query.email;
-            const query = { email: email };
-            const user = await usersCollection.findOne(query);
-            if (user) {
-                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: '1d' })
-                return res.send({ accessToken: token });
-            }
-            res.status(403).send({ accessToken: '' })
-        });
-
-        // admin & seller hooks
-
-        app.get('/users/admin/:email', async (req, res) => {
-            const email = req.params.email;
-            const query = { email }
-            const user = await usersCollection.findOne(query);
-            res.send({ isAdmin: user?.userType === 'admin' });
+        app.delete('/booked/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await resaleCollection.deleteOne(query);
+            res.send(result);
         })
 
-        app.get('/users/seller/:email', async (req, res) => {
-            const email = req.params.email;
-            const query = { email }
-            const user = await usersCollection.findOne(query);
-            res.send({ isSeller: user?.userType === 'Seller' });
-        })
-
-        // app.get('/users', async (req, res) => {
-        //     const query = { _id: ObjectId(id) };
-        //     console.log(query)
-        //     const users = await usersCollection.find(query).toArray();
-        //     res.send(users);
-        // });
-
-        // admin dashboard
 
         app.get('/users/allsellers', async (req, res) => {
             const query = { userType: 'Seller' };
@@ -199,14 +192,6 @@ async function run() {
 
 }
 run().catch(err => console.error(err));
-
-
-// app.get('/category/:id', (req, res) => {
-//     const id = req.params.id;
-//     const selectedCourse = courses.find(course => course._id === id);
-//     res.send(selectedCourse);
-// })
-
 
 
 app.get('/', (req, res) => {
